@@ -137,3 +137,10 @@ document.body.classList.toggle("dark")
 }
 
 renderTasks()
+const input = document.getElementById("taskInput")
+
+input.addEventListener("keydown", function(e){
+    if(e.key === "Enter"){
+        addTask()
+    }
+})
