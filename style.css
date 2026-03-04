@@ -1,0 +1,107 @@
+body{
+font-family: Arial;
+background: linear-gradient(135deg,#667eea,#764ba2);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+margin:0;
+}
+
+/* container */
+.container{
+background: rgba(255,255,255,0.2);
+backdrop-filter: blur(15px);
+padding:35px;
+border-radius:20px;
+width:370px;
+text-align:center;
+box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
+
+/* title */
+h1{
+color:white;
+}
+
+/* inputs */
+input,select{
+padding:10px;
+margin:5px;
+border-radius:8px;
+border:none;
+}
+
+/* buttons */
+button{
+padding:8px 14px;
+border:none;
+border-radius:8px;
+background:#4f6ef7;
+color:white;
+cursor:pointer;
+margin:5px;
+}
+
+button:hover{
+background:#3d5df5;
+}
+
+/* task list */
+ul{
+list-style:none;
+padding:0;
+margin-top:15px;
+}
+
+/* task card */
+li{
+background:white;
+margin:10px 0;
+padding:12px;
+border-radius:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+/* priority colors */
+.low{
+border-left:6px solid green;
+}
+
+.medium{
+border-left:6px solid orange;
+}
+
+.high{
+border-left:6px solid red;
+}
+
+/* completed */
+.completed{
+text-decoration: line-through;
+opacity:0.6;
+}
+
+/* progress bar */
+.progress{
+height:8px;
+background:#ddd;
+border-radius:10px;
+margin:10px 0;
+overflow:hidden;
+}
+
+.progress-bar{
+height:100%;
+background:#4f6ef7;
+width:0%;
+transition:0.3s;
+}
+
+/* dark mode */
+.dark{
+background:black;
+color:white;
+}
