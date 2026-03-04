@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <title>Todo App</title>
@@ -14,31 +15,37 @@
 
 <button onclick="toggleDark()">Dark Mode</button>
 
-<br><br>
+<div class="input-box">
 
 <input id="taskInput" placeholder="New task">
 
 <select id="priority">
-<option value="low">Low</option>
-<option value="medium">Medium</option>
-<option value="high">High</option>
+<option value="Low">Low</option>
+<option value="Medium">Medium</option>
+<option value="High">High</option>
 </select>
 
 <button onclick="addTask()">Add</button>
 
-<p id="counter">Tasks: 0</p>
+</div>
 
-<div class="progress">
-<div id="progressBar" class="progress-bar"></div>
+<div class="progress-box">
+
+<p id="progressText">0 / 0 Completed</p>
+
+<div class="progress-bar">
+<div id="progress"></div>
+</div>
+
 </div>
 
 <div class="filters">
-<button onclick="filterTasks('all')">All</button>
-<button onclick="filterTasks('active')">Active</button>
-<button onclick="filterTasks('completed')">Completed</button>
-</div>
 
-<button onclick="clearAll()">Clear All</button>
+<button onclick="setFilter('all')">All</button>
+<button onclick="setFilter('active')">Active</button>
+<button onclick="setFilter('completed')">Completed</button>
+
+</div>
 
 <ul id="taskList"></ul>
 

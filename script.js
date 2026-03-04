@@ -2,92 +2,87 @@ let tasks = JSON.parse(localStorage.getItem("tasks")) || []
 let filter = "all"
 
 function saveTasks(){
-localStorage.setItem("tasks", JSON.stringify(tasks))
+localStorage.setItem("tasks",JSON.stringify(tasks))
 }
 
-function updateCounter(){
-
-document.getElementById("counter").innerText = "Tasks: " + tasks.length
-
-let completed = tasks.filter(t => t.completed).length
-
-let percent = 0
-
-if(tasks.length > 0){
-percent = (completed / tasks.length) * 100
+function setFilter(type){
+filter = type
+renderTasks()
 }
 
-document.getElementById("progressBar").style.width = percent + "%"
+function updateProgress(){
+
+let completed = tasks.filter(t=>t.completed).length
+let total = tasks.length
+
+document.getElementById("progressText").innerText =
+`${completed} / ${total} Completed`
+
+let percent = total===0 ? 0 : (completed/total)*100
+
+document.getElementById("progress").style.width = percent+"%"
 
 }
 
 function renderTasks(){
 
-let list = document.getElementById("taskList")
+const list = document.getElementById("taskList")
 list.innerHTML=""
 
-tasks.forEach((task,index)=>{
+let filtered = tasks
 
-if(filter==="active" && task.completed) return
-if(filter==="completed" && !task.completed) return
+if(filter==="active"){
+filtered = tasks.filter(t=>!t.completed)
+}
 
-let li=document.createElement("li")
+if(filter==="completed"){
+filtered = tasks.filter(t=>t.completed)
+}
 
-li.classList.add(task.priority)
+filtered.forEach((task,index)=>{
+
+const realIndex = tasks.indexOf(task)
+
+const li = document.createElement("li")
+
+li.draggable=true
 
 if(task.completed){
 li.classList.add("completed")
 }
 
-let span=document.createElement("span")
-span.innerText = task.text
+li.innerHTML=`
+<span onclick="toggleComplete(${realIndex})">
+${task.text} (${task.priority})
+</span>
 
-span.onclick=function(){
-task.completed=!task.completed
-saveTasks()
-renderTasks()
-}
+<div>
 
-let editBtn=document.createElement("button")
-editBtn.innerText="Edit"
+<button onclick="editTask(${realIndex})">
+Edit
+</button>
 
-editBtn.onclick=function(){
+<button class="delete-btn" onclick="deleteTask(${realIndex})">
+Delete
+</button>
 
-let newText=prompt("Edit task",task.text)
-
-if(newText){
-task.text=newText
-saveTasks()
-renderTasks()
-}
-
-}
-
-let deleteBtn=document.createElement("button")
-deleteBtn.innerText="Delete"
-
-deleteBtn.onclick=function(){
-tasks.splice(index,1)
-saveTasks()
-renderTasks()
-}
-
-li.appendChild(span)
-li.appendChild(editBtn)
-li.appendChild(deleteBtn)
+</div>
+`
 
 list.appendChild(li)
 
 })
 
-updateCounter()
+updateProgress()
 
 }
 
 function addTask(){
 
-let text=document.getElementById("taskInput").value
-let priority=document.getElementById("priority").value
+const input = document.getElementById("taskInput")
+const priority = document.getElementById("priority").value
+
+const text = input.value.trim()
 
 if(text==="") return
 
@@ -97,32 +92,48 @@ priority:priority,
 completed:false
 })
 
+input.value=""
+
 saveTasks()
 renderTasks()
 
-document.getElementById("taskInput").value=""
-
 }
 
-function clearAll(){
-tasks=[]
+function deleteTask(index){
+
+tasks.splice(index,1)
+
 saveTasks()
 renderTasks()
+
 }
 
-function filterTasks(type){
-filter=type
+function editTask(index){
+
+const newText = prompt("Edit task:",tasks[index].text)
+
+if(newText===null || newText.trim()==="") return
+
+tasks[index].text=newText.trim()
+
+saveTasks()
 renderTasks()
+
+}
+
+function toggleComplete(index){
+
+tasks[index].completed=!tasks[index].completed
+
+saveTasks()
+renderTasks()
+
 }
 
 function toggleDark(){
-document.body.classList.toggle("dark")
-}
 
-document.getElementById("taskInput").addEventListener("keypress",function(e){
-if(e.key==="Enter"){
-addTask()
+document.body.classList.toggle("dark")
+
 }
-})
 
 renderTasks()
