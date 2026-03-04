@@ -1,11 +1,5 @@
 
-const input = document.getElementById("taskInput")
-
-input.addEventListener("keydown", function(e){
-    if(e.key === "Enter"){
-        addTask()
-    }
-})let tasks = JSON.parse(localStorage.getItem("tasks")) || []
+let tasks = JSON.parse(localStorage.getItem("tasks")) || []
 let filter = "all"
 
 function saveTasks(){
@@ -142,5 +136,11 @@ function toggleDark(){
 document.body.classList.toggle("dark")
 
 }
+const input = document.getElementById("taskInput")
 
+input.addEventListener("keydown", function(e){
+    if(e.key === "Enter"){
+        addTask()
+    }
+})
 renderTasks()
