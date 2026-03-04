@@ -1,107 +1,85 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
 body{
-font-family: Arial;
-background: linear-gradient(135deg,#667eea,#764ba2);
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#667eea,#764ba2);
 }
 
-/* container */
 .container{
-background: rgba(255,255,255,0.2);
-backdrop-filter: blur(15px);
-padding:35px;
-border-radius:20px;
-width:370px;
-text-align:center;
-box-shadow:0 15px 40px rgba(0,0,0,0.25);
+    width:400px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+    padding:30px;
+    color:white;
+    box-shadow:0 15px 40px rgba(0,0,0,0.3);
 }
 
-/* title */
 h1{
-color:white;
+    text-align:center;
+    margin-bottom:20px;
 }
 
-/* inputs */
-input,select{
-padding:10px;
-margin:5px;
-border-radius:8px;
-border:none;
+.input-box{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
 }
 
-/* buttons */
+input{
+    flex:1;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    outline:none;
+}
+
 button{
-padding:8px 14px;
-border:none;
-border-radius:8px;
-background:#4f6ef7;
-color:white;
-cursor:pointer;
-margin:5px;
+    padding:12px 18px;
+    border:none;
+    border-radius:10px;
+    background:#00e676;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
 }
 
 button:hover{
-background:#3d5df5;
+    background:#00c853;
+    transform:scale(1.05);
 }
 
-/* task list */
 ul{
-list-style:none;
-padding:0;
-margin-top:15px;
+    list-style:none;
 }
 
-/* task card */
 li{
-background:white;
-margin:10px 0;
-padding:12px;
-border-radius:10px;
-display:flex;
-justify-content:space-between;
-align-items:center;
+    background:rgba(255,255,255,0.2);
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:10px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-/* priority colors */
-.low{
-border-left:6px solid green;
+.delete-btn{
+    background:#ff5252;
+    color:white;
 }
 
-.medium{
-border-left:6px solid orange;
+.delete-btn:hover{
+    background:#ff1744;
 }
 
-.high{
-border-left:6px solid red;
-}
-
-/* completed */
-.completed{
-text-decoration: line-through;
-opacity:0.6;
-}
-
-/* progress bar */
-.progress{
-height:8px;
-background:#ddd;
-border-radius:10px;
-margin:10px 0;
-overflow:hidden;
-}
-
-.progress-bar{
-height:100%;
-background:#4f6ef7;
-width:0%;
-transition:0.3s;
-}
-
-/* dark mode */
 .dark{
-background:black;
-color:white;
+    background:#121212;
 }
